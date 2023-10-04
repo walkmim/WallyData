@@ -1,0 +1,35 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policydestinationbrunotiago",
+    "Statement": [
+        {
+            "Sid": "Stmtdestinationbrunotiagoobjects",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::770409265803:role/role-sourcebrunotiago"
+            },
+            "Action": [
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ObjectOwnerOverrideToBucketOwner",
+                "s3:ReplicateObject",
+                "s3:ReplicateDelete"
+            ],
+            "Resource": "arn:aws:s3:::destinationbrunotiago/*"
+        },
+        {
+            "Sid": "Stmtdestinationbrunotiagobucket",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::770409265803:role/role-sourcebrunotiago"
+            },
+            "Action": [
+                "s3:List*",
+                "s3:GetBucketVersioning",
+                "s3:PutBucketVersioning"
+            ],
+            "Resource": "arn:aws:s3:::destinationbrunotiago"
+        }
+    ]
+}

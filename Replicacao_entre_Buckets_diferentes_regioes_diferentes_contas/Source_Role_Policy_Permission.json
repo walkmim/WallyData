@@ -1,0 +1,64 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "sourcePermissionObject",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObjectVersionTagging",
+                "s3:GetObjectVersionAcl",
+                "s3:GetObjectVersionForReplication"
+            ],
+            "Resource": [
+                "arn:aws:s3:::sourcebrunotiago/*"
+            ]
+        },
+        {
+            "Sid": "sourcePermissionBucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetReplicationConfiguration"
+            ],
+            "Resource": "arn:aws:s3:::sourcebrunotiago"
+        },
+        {
+            "Sid": "ToRunBatchOperationJob",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutInventoryConfiguration",
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:InitiateReplication"
+            ],
+            "Resource": [
+                "arn:aws:s3:::sourcebrunotiago",
+                "arn:aws:s3:::sourcebrunotiago/*"
+            ]
+        },
+        {
+            "Sid": "Stmtdestinationbrunotiagoobjects",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ReplicateObject",
+                "s3:ReplicateDelete",
+                "s3:ObjectOwnerOverrideToBucketOwner"
+            ],
+            "Resource": "arn:aws:s3:::destinationbrunotiago/*"
+        },
+        {
+            "Sid": "Stmtdestinationbrunotiagobucket",
+            "Effect": "Allow",
+            "Action": [
+                "s3:List*",
+                "s3:GetBucketVersioning",
+                "s3:PutBucketVersioning"
+            ],
+            "Resource": "arn:aws:s3:::destinationbrunotiago"
+        }
+    ]
+}
